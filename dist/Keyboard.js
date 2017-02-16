@@ -58,7 +58,6 @@ var _class = function (_React$Component) {
                 if (typeof this.props.onAccepted == 'function') {
                     this.props.onAccepted(el.value);
                 }
-                console.log('The content "' + el.value + '" was accepted');
             }.bind(this);
 
             // Set Class to visible
@@ -74,7 +73,6 @@ var _class = function (_React$Component) {
             if (this.props.options.updateOnChange == true) {
                 this.props.options.change = function (event, keyboard, el) {
                     this.handleChange('', keyboard.preview.value);
-                    console.log('The content "' + el.value + '" was changed');
                 }.bind(this);
             }
 
@@ -114,7 +112,6 @@ var _class = function (_React$Component) {
         key: 'handleChange',
         value: function handleChange(event, input) {
             if (!input && event && event.target && typeof event.target.value != 'undefined') input = event.target.value;
-            console.log("Change", input);
             this.setState({ value: input });
             this.props.onChange(input);
         }
@@ -132,11 +129,11 @@ var _class = function (_React$Component) {
             if (this.props.options.type == 'textarea') {
                 var element = _react2.default.createElement('textarea', _extends({ ref: 'keyboard', value: this.state.value, onChange: this.handleChange }, other));
             } else {
-                var element = _react2.default.createElement('input', _extends({ ref: 'keyboard', value: this.state.value, onChange: this.handleChange }, other));
+                var element = _react2.default.createElement('input', _extends({ ref: 'keyboard', value: this.state.value, onChange: this.handleChange, type:this.options ? this.options.type||"text" : "text"}, other));
             }
             return _react2.default.createElement(
                 'div',
-                { 'class': 'keyboard-wrapper', className: this.state.className },
+                { 'className': 'keyboard-wrapper', className: this.state.className },
                 ' ',
                 element,
                 ' '
